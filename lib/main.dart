@@ -1,4 +1,4 @@
-import 'package:coffee_flutter/screens/home_screen.dart';
+import 'package:coffee_flutter/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const MainScreen(),
     );
   }
 }

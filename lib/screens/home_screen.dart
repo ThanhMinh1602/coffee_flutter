@@ -3,14 +3,12 @@
 
 import 'package:coffee_flutter/widgets/custom_rating_star.dart';
 import 'package:flutter/material.dart';
-
 import 'package:coffee_flutter/gen/fonts.gen.dart';
 import 'package:coffee_flutter/models/category_model.dart';
 import 'package:coffee_flutter/models/product_model.dart';
 import 'package:coffee_flutter/models/user_model.dart';
 import 'package:coffee_flutter/resources/app_color.dart';
 import 'package:coffee_flutter/screens/detail_screen.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +19,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int current = 0;
+  List<ProductModel> productsInSelectedCategory = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,23 +142,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             quarterTurns: -1,
                             child: Padding(
                               padding: EdgeInsets.only(
-                                left: 40,
+                                left: 40.0 - 8.0,
                               ),
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () {
                                   setState(() {
                                     current = index;
                                   });
                                 },
-                                child: Text(
-                                  listCate[index].categoryName ?? 'error',
-                                  style: TextStyle(
-                                    color: current == index
-                                        ? AppColor.hEFE3C8
-                                        : AppColor.hEFE3C8.withOpacity(0.5),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: FontFamily.rosarivo,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    listCate[index].categoryName ?? 'error',
+                                    style: TextStyle(
+                                      color: current == index
+                                          ? AppColor.hEFE3C8
+                                          : AppColor.hEFE3C8.withOpacity(0.5),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: FontFamily.rosarivo,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -287,39 +290,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 78,
-        decoration: BoxDecoration(color: AppColor.h22141F),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 46.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Icon(
-                FontAwesomeIcons.home,
-                size: 24,
-                color: AppColor.hEFE3C8,
-              ),
-              Icon(
-                FontAwesomeIcons.shoppingCart,
-                size: 24,
-                color: AppColor.hEFE3C8,
-              ),
-              Icon(
-                FontAwesomeIcons.heartCircleBolt,
-                size: 24,
-                color: AppColor.hEFE3C8,
-              ),
-              Icon(
-                FontAwesomeIcons.solidBell,
-                size: 24,
-                color: AppColor.hEFE3C8,
-              )
-            ],
-          ),
-        ),
       ),
     );
   }
