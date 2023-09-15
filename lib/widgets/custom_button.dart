@@ -33,9 +33,11 @@ class CustomButton extends StatelessWidget {
           color: borderColor ?? Colors.transparent,
         ),
       ),
-      child: Text(
-        label ?? '',
-        style: style,
+      child: Center(
+        child: Text(
+          label ?? '',
+          style: style,
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: prefer_const_constructors
 
+import 'package:coffee_flutter/models/cart_model.dart';
 import 'package:coffee_flutter/widgets/custom_rating_star.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee_flutter/gen/fonts.gen.dart';
@@ -19,7 +20,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int current = 0;
-  List<ProductModel> productsInSelectedCategory = [];
 
   @override
   Widget build(BuildContext context) {
