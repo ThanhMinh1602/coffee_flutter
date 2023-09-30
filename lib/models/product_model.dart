@@ -11,6 +11,7 @@ class ProductModel {
   CategoryModel? categoryModel;
   List<String>? option;
   int? curentOption = 0;
+  int? quantity;
   ProductModel();
 }
 
@@ -27,7 +28,7 @@ List<ProductModel> listProduct = [
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
     ..ratingStar = 4.3
-    ..cateId = 1,
+    ..categoryModel = listCate[1],
   ProductModel()
     ..name = 'Drizzled with Caramel'
     ..title = 'Drizzled with Caramel'
@@ -39,7 +40,7 @@ List<ProductModel> listProduct = [
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
     ..ratingStar = 4.9
-    ..cateId = 3,
+    ..categoryModel = listCate[2],
   ProductModel()
     ..name = 'Bursting Blueberry'
     ..title = 'Drizzled with Caramel'
@@ -52,7 +53,7 @@ List<ProductModel> listProduct = [
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
     ..ratingStar = 5.0
-    ..cateId = 4,
+    ..categoryModel = listCate[3],
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -64,8 +65,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.3
-    ..cateId = 2,
+    ..ratingStar = 4.3..categoryModel = listCate[4],
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -77,8 +77,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.8
-    ..cateId = 2,
+    ..ratingStar = 4.8..categoryModel = listCate[5],
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -89,8 +88,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup'
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.3
-    ..cateId = 4,
+    ..ratingStar = 4.3..categoryModel = listCate[6],
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -102,8 +100,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.3
-    ..cateId = 1,
+    ..ratingStar = 4.3..categoryModel = listCate[7],
   ProductModel()
     ..name = 'Drizzled with Caramel'
     ..title = 'Drizzled with Caramel'
@@ -115,8 +112,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.9
-    ..cateId = 3,
+    ..ratingStar = 4.9..categoryModel = listCate[8],
   ProductModel()
     ..name = 'Bursting Blueberry'
     ..title = 'Drizzled with Caramel'
@@ -128,8 +124,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 5.0
-    ..cateId = 4,
+    ..ratingStar = 5.0..categoryModel = listCate[2],
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -141,8 +136,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.3
-    ..cateId = 2,
+    ..ratingStar = 4.3..categoryModel = listCate[0],
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -154,8 +148,7 @@ List<ProductModel> listProduct = [
             'sweetened cocoa powder and drizzled with scrumptious caramel syrup sweetened cocoa '
             'powder and drizzled with scrumptious caramel syrup '
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
-    ..ratingStar = 4.8
-    ..cateId = 2,
+    ..ratingStar = 4.8,
   ProductModel()
     ..name = 'Cinnamon & Cocoa'
     ..title = 'Drizzled with Caramel'
@@ -167,5 +160,4 @@ List<ProductModel> listProduct = [
             'powder and drizzled with scrumptious caramel syrup'
     ..option = ['Oat Milk', 'Soy Milk', 'Almond Milk']
     ..ratingStar = 4.3
-    ..cateId = 4
 ];

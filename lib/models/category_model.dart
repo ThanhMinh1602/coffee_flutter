@@ -5,6 +5,9 @@ class CategoryModel {
 }
 
 List<CategoryModel> listCate = [
+    CategoryModel()
+    ..id = 0
+    ..categoryName = 'Trà Sữa',
   CategoryModel()
     ..id = 1
     ..categoryName = 'Cappuccino',

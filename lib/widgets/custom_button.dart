@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
     this.label,
     this.paddingHorizontal = 20.0,
     this.paddingVertical = 8.0,
-    this.style,
+    this.style, this.onTap,
   }) : super(key: key);
   final Color? backgroundColor;
   final Color? borderColor;
@@ -17,26 +17,30 @@ class CustomButton extends StatelessWidget {
   final double paddingHorizontal;
   final double paddingVertical;
   final TextStyle? style;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 8.0),
-      padding: EdgeInsets.symmetric(
-          horizontal: paddingHorizontal, vertical: paddingVertical),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10.0),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(right: 8.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: paddingHorizontal, vertical: paddingVertical),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+          border: Border.all(
+            color: borderColor ?? Colors.transparent,
+          ),
         ),
-        border: Border.all(
-          color: borderColor ?? Colors.transparent,
-        ),
-      ),
-      child: Center(
-        child: Text(
-          label ?? '',
-          style: style,
+        child: Center(
+          child: Text(
+            label ?? '',
+            style: style,
+          ),
         ),
       ),
     );

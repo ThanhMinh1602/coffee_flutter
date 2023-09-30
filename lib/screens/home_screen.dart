@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: public_member_api_docs, sort_constructors_firs
 
 import 'package:coffee_flutter/models/cart_model.dart';
 import 'package:coffee_flutter/widgets/custom_rating_star.dart';
@@ -10,9 +9,10 @@ import 'package:coffee_flutter/models/product_model.dart';
 import 'package:coffee_flutter/models/user_model.dart';
 import 'package:coffee_flutter/resources/app_color.dart';
 import 'package:coffee_flutter/screens/detail_screen.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,13 +20,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int current = 0;
+  List<ProductModel> listPrdOfcate = [];
+
+  void addToCart(ProductModel productModel) {
+    Provider.of<CartModel>(context, listen: false).addItemToCart(productModel);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.h201520,
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 89.0),
+        preferredSize: const Size(double.infinity, 89.0),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0)
@@ -48,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColor.hEFE3C8.withOpacity(0.5),
                         ),
                       ),
-                      TextSpan(
+                      const TextSpan(
                         text: 'Brew',
                         style: TextStyle(
                             fontSize: 47.999996185302734,
@@ -63,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   width: 50,
                   height: 50,
-                  padding: EdgeInsets.all(3.0),
+                  padding: const EdgeInsets.all(3.0),
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       border: Border.all(color: AppColor.hDCAA70),
@@ -83,11 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 35.0),
+          const SizedBox(height: 35.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 26.0),
             child: TextFormField(
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColor.hEFE3C8,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -102,8 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w400,
                   fontFamily: FontFamily.rosarivo,
                 ),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
                 prefixIcon: Icon(
                   Icons.search,
                   color: AppColor.hEFE3C8.withOpacity(0.5),
@@ -122,12 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: const EdgeInsets.only(top: 35),
                   width: 38.0,
                   height: double.infinity,
                   decoration: BoxDecoration(
                     color: AppColor.h704341.withOpacity(0.3),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(
                         40.0,
                       ),
@@ -141,13 +146,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           (index) => RotatedBox(
                             quarterTurns: -1,
                             child: Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                 left: 40.0 - 8.0,
                               ),
                               child: InkWell(
                                 onTap: () {
                                   setState(() {
                                     current = index;
+                                    listPrdOfcate = listProduct
+                                        .where((element) =>
+                                            element.categoryModel?.id ==
+                                            listCate[index].id)
+                                        .toList();
                                   });
                                 },
                                 child: Padding(
@@ -174,13 +184,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Expanded(
                   child: GridView.builder(
-                    itemCount: listProduct.length,
-                    padding: EdgeInsets.symmetric(horizontal: 25.0),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 230.0,
-                        mainAxisSpacing: 16.0,
-                        crossAxisSpacing: 16.0,
-                        crossAxisCount: 2),
+                    itemCount: listPrdOfcate.length,
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisExtent: 230.0,
+                            mainAxisSpacing: 16.0,
+                            crossAxisSpacing: 16.0,
+                            crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
@@ -188,12 +199,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailScreen(
-                                  productModel: listProduct[index],
+                                  productModel: listPrdOfcate[index],
                                 ),
                               ));
                         },
                         child: Container(
-                          padding: EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             color: AppColor.hFFFFFF.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12.6),
@@ -208,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15.0),
                                       child: Image.network(
-                                        listProduct[index].image ?? '',
+                                        listPrdOfcate[index].image ?? '',
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -218,30 +229,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 20.0,
                                     decoration: BoxDecoration(
                                       color: AppColor.h3a302f.withOpacity(0.8),
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(15),
                                         bottomRight: Radius.circular(15),
                                       ),
                                     ),
                                     child: CustomRatingStar(
                                         text:
-                                            '${listProduct[index].ratingStar}'),
+                                            '${listPrdOfcate[index].ratingStar}'),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 8.0),
+                              const SizedBox(height: 8.0),
                               Text(
-                                listProduct[index].name ?? '',
-                                style: TextStyle(
+                                listPrdOfcate[index].name ?? '',
+                                style: const TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.w400,
                                   fontFamily: FontFamily.rosarivo,
                                   color: AppColor.hFFFFFF,
                                 ),
                               ),
-                              SizedBox(height: 13.0),
+                              const SizedBox(height: 13.0),
                               Container(
-                                padding: EdgeInsets.only(left: 18.0),
+                                padding: const EdgeInsets.only(left: 18.0),
                                 width: double.infinity,
                                 height: 39,
                                 decoration: BoxDecoration(
@@ -253,27 +264,49 @@ class _HomeScreenState extends State<HomeScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '₹${listProduct[index].price}',
-                                      style: TextStyle(
+                                      '₹${listPrdOfcate[index].price}',
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
                                         color: AppColor.hFFFFFF,
                                       ),
                                     ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      width: 39.0,
-                                      height: 39.0,
-                                      decoration: BoxDecoration(
-                                        color: AppColor.hEFE3C8,
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: Text(
-                                        '+',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: AppColor.h1C161E,
-                                            fontWeight: FontWeight.bold),
+                                    GestureDetector(
+                                      onTap: () {
+                                        addToCart(listPrdOfcate[index]);
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title:
+                                                  Text('Đã thêm vào giỏ hàng!'),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.of(context)
+                                                            .pop(),
+                                                    child: Text('Ok'))
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: 39.0,
+                                        height: 39.0,
+                                        decoration: BoxDecoration(
+                                          color: AppColor.hEFE3C8,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: const Text(
+                                          '+',
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              color: AppColor.h1C161E,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                     ),
                                   ],

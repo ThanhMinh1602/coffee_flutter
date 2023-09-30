@@ -1,11 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:coffee_flutter/models/cart_model.dart';
+import 'package:coffee_flutter/screens/cart_screen.dart';
 import 'package:coffee_flutter/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-
 import 'package:coffee_flutter/gen/fonts.gen.dart';
 import 'package:coffee_flutter/models/product_model.dart';
 import 'package:coffee_flutter/resources/app_color.dart';
 import 'package:coffee_flutter/widgets/custom_rating_star.dart';
+import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({
@@ -18,6 +20,10 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  void addToCart(ProductModel productModel) {
+    Provider.of<CartModel>(context, listen: false).addItemToCart(productModel);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,9 +198,17 @@ class _DetailScreenState extends State<DetailScreen> {
                         )
                       ],
                     ),
-                    const CustomButton(
+                    CustomButton(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            addToCart(widget.productModel);
+                            return CartScreen();
+                          },
+                        ));
+                      },
                       label: 'BUY NOW',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
                         color: AppColor.h4A2B29,

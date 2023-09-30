@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   List<IconData> listIcon = [
     FontAwesomeIcons.home,
     FontAwesomeIcons.shoppingCart,
-    FontAwesomeIcons.heartCircleBolt,
+    FontAwesomeIcons.solidHeart,
     FontAwesomeIcons.solidBell
   ];
   @override
@@ -25,8 +25,8 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(
         index: currentIndex,
         children: [
-          const HomeScreen(),
-          const CartScreen(),
+           HomeScreen(),
+          CartScreen(),
           Container(
             color: AppColor.h4A2B29,
           ),
